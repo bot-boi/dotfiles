@@ -1,0 +1,137 @@
+function! IsWindows()
+    return (has('win32') || has('win32unix') || has('win64'))
+endfunction
+
+
+if IsWindows()
+	let $VIMHOME = "~/vimfiles"
+else
+	let $VIMHOME = "~/.vim"
+endif
+
+
+set nocompatible
+filetype off
+" set rtp+=$VIMHOME/bundle/Vundle.vim
+
+" unix config (defaults)
+" set shellslash <- issues with git-bash & vim-plug ?
+set backspace=indent,eol,start
+set breakindent
+set encoding=utf-8
+set hidden
+set number
+set t_Co=256
+
+" windows config
+if IsWindows()
+    set viminfo+=n~/vimfiles/viminfo
+    set pythonthreedll=python39.dll
+    set shell=cmd
+endif
+
+" plugins below this line
+call plug#begin($VIMHOME."/bundle")
+
+
+Plug 'severin-lemaignan/vim-minimap'
+
+
+" autocompletions - use tab
+Plug 'ackyshake/VimCompletesMe'
+
+" file tree
+Plug 'scrooloose/nerdtree'
+nmap <S-Q> :NERDTreeToggle<CR>
+
+" git wrapper
+Plug 'tpope/vim-fugitive'
+
+" syntax highlighting debugger
+" call with :echo synstax#UnderCursor()
+Plug 'benknoble/vim-synstax'
+
+" close buffer without closing window
+" unused?
+Plug 'qpkorr/vim-bufkill'
+
+
+" javascript QOL syntax/indentation
+Plug 'pangloss/vim-javascript'
+
+" quake style terminal for vim
+Plug 'Lenovsky/nuake'
+nnoremap <C-z> :Nuake<CR>
+inoremap <C-z> <C-\><C-n>:Nuake<CR>
+tnoremap <C-z> <C-\><C-n>:Nuake<CR>
+let g:nuake_position = 'top'
+let g:nuake_size = 0.4
+let g:nuake_per_tab = 1
+let g:start_insert = 0
+
+
+if has('gui_running')
+    " window improvements
+    Plug 'kkoenig/wimproved.vim'
+    autocmd GUIEnter * silent! WToggleClean
+    autocmd VimEnter * silent! WSetAlpha 245
+    " hide gvim peripheral stuff
+    set guioptions-=m  "menu bar
+    set guioptions-=T  "toolbar
+    set guioptions-=r  "scrollbar
+    set guioptions-=L  "scrollbar
+endif
+
+" javascript related configuration
+au BufNewFile,BufRead *.js
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=120 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+    " enable use of up & down arrow keys when autocomplete menu is open
+    " use tab/shift tab to cycle completions instead
+let g:ycm_key_list_stop_completion = ['<C-y>', '<UP>', '<DOWN>']
+" keybinds
+    " leave insert mode
+imap jj <ESC>
+    " leave terminal insert mode
+tnoremap jj <C-\><C-N>
+    " binds for split navigation. IE ctrl-j instead of ctrl-w-j
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+" run on startup
+
+" load python config
+" TODO: store this in a better place
+source $VIMHOME/mypython.vim
+
+" All of your Plugs must be added before the following line
+call plug#end()            " required
+
+
+if has('gui_running')
+    " set font
+    set guifont=Hack:h12:cANSI:qDRAFT
+endif
+colorscheme mouse_v2
+
+
+" show syntax highlight group at cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+	\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+	\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+
+	" configure splits
+    " maximize window
+autocmd GUIEnter * simalt ~x
+autocmd VimEnter * resize
+
+
+autocmd Syntax * syntax keyword myTodo NOTE REVIEW HACK UGLY containedin=ALL | highlight def link myTodo vimTodo
