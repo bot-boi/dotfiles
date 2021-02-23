@@ -41,6 +41,7 @@ maim
 make
 man-db
 man-pages
+mpv
 ntfs-3g
 openssh
 pass
@@ -52,10 +53,12 @@ pkgconf
 pulseaudio-alsa
 pulseaudio-bluetooth
 python
+python-adblock
 python-beautifulsoup4
 python-tldextract
 ranger
 remmina
+rofi
 rsync
 rust
 scrot
@@ -88,3 +91,4 @@ xorg-xmessage
 xorg-xrandr
 xorg-xsetroot
 xterm
+youtube-dl
