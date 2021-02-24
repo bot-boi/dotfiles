@@ -42,6 +42,8 @@ make
 man-db
 man-pages
 mpv
+nodejs
+npm
 ntfs-3g
 openssh
 pass
@@ -64,6 +66,7 @@ rust
 scrot
 slock
 sudo
+taskwarrior-tui
 tesseract
 tesseract-data-eng
 texinfo
@@ -74,6 +77,7 @@ ttf-dejavu
 ttf-hack
 tumbler
 turbostat
+veracrypt
 vim
 wmctrl
 xcursor-themes
