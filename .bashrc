@@ -12,23 +12,22 @@ parse_git_branch() {
 }
 
 
-PS1="[\w]\[\e[44m\]\`parse_git_branch\`\[\e[m\]$ "
+PS1="[\W]\[\e[44m\]\`parse_git_branch\`\[\e[m\]$ "
 
 export EDITOR=vim
 
 
 # aliases
-# alias st="st -f Hack:size=14"
-alias r="fc -s"
+alias py="python"
+# rerun last command, matches pattern (all if none)
+alias rr="fc -s"
 alias simple-terminal="st"
 
 # git aliases
-# TODO: more of these?
-# TODO: switch to "main" master branch name...
 alias gcd="git checkout dev"
-alias gcm="git checkout master"
+alias gcm="git checkout main"
 alias gdd="git diff dev"
-alias gdm="git diff master"
+alias gdm="git diff main"
 alias gpd="git push dev"
-alias gpm="git push master"
+alias gpm="git push main"
 

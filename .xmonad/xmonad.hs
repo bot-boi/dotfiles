@@ -12,12 +12,10 @@ import XMonad.Util.Run
 import XMonad.Util.EZConfig
 import qualified Data.Map        as M
 
-myLayout = layoutStack ||| layoutDwindle ||| layoutTall ||| layoutMirror ||| Grid ||| layoutFull
+myLayout = layoutStack ||| layoutTall ||| Grid ||| layoutFull
   where
      layoutStack = StackTile 1 (3/100) (2/3)
-     layoutDwindle = Dwindle R CW 1.5 1.1
      layoutTall = Tall 1 (3/100) (2/3)
-     layoutMirror = Mirror (layoutTall)
      layoutFull = Full
 
 
