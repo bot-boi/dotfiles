@@ -1,0 +1,110 @@
+" this is my vimrc
+"
+" unix config (aka defaults)
+set nocompatible
+filetype off
+set backspace=indent,eol,start
+set breakindent
+set encoding=utf-8
+set hidden
+set number
+set t_Co=256
+let $VIMHOME = "~/.vim"  " probably default
+
+
+function! IsWindows()
+    return (has('win32') || has('win32unix') || has('win64'))
+endfunction
+
+
+" plugins below this line
+call plug#begin($VIMHOME."/bundle")
+
+
+if IsWindows()
+	source "~/.vimfiles/windows.vim"
+endif
+
+
+" autocompletions with <TAB> & <CR>
+Plug 'ackyshake/VimCompletesMe'
+
+" :Minimap
+Plug 'severin-lemaignan/vim-minimap'
+
+" file browser
+Plug 'francoiscabrol/ranger.vim'
+let g:ranger_map_keys = 0
+let g:ranger_replace_netrw = 1
+nmap <S-Q> :RangerCurrentDirectory<CR>
+
+" git wrapper
+Plug 'tpope/vim-fugitive'
+
+" syntax highlighting debugger
+" call with :echo synstax#UnderCursor()
+Plug 'benknoble/vim-synstax'
+
+" close buffer without closing window
+" unused?
+Plug 'qpkorr/vim-bufkill'
+
+
+" quake style terminal for vim
+Plug 'Lenovsky/nuake'
+nnoremap <C-z> :Nuake<CR>
+inoremap <C-z> <C-\><C-n>:Nuake<CR>
+tnoremap <C-z> <C-\><C-n>:Nuake<CR>
+let g:nuake_position = 'top'
+let g:nuake_size = 0.4
+let g:nuake_per_tab = 1
+let g:start_insert = 0
+
+
+
+" ===== keybinds =====
+    " leave insert mode
+imap jj <ESC>
+    " leave terminal insert mode
+tnoremap jj <C-\><C-N>
+" binds for split navigation, ctrl-j instead of ctrl-w-j
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+
+" fancy status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" python flake8 (PEP 8) highlighting
+Plug 'nvie/vim-flake8'
+
+" :Pydocstring   :PydocstringFormat < does whole file
+Plug 'heavenshell/vim-pydocstring'
+
+" :StripTrailingWhitespace, auto on modified lines
+Plug 'axelf4/vim-strip-trailing-whitespace'
+
+
+call plug#end()
+
+
+let g:airline_theme='violet'
+colorscheme mouse_v3
+
+
+" show syntax highlight group at cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+	\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+	\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+
+" maximize window on startup
+autocmd GUIEnter * simalt ~x
+autocmd VimEnter * resize
+
+
+" idk what to call these but they are important and global
+autocmd Syntax * syntax keyword myTodo NOTE REVIEW HACK UGLY containedin=ALL | highlight def link myTodo vimTodo

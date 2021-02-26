@@ -1,0 +1,9 @@
+this is my vim configuration
+
+Setup:
+  * install flake8 package
+  * install Plug (vim plugin mngr)
+  * do :PlugInstall
+  * tada!
+
+take a minute to check out my selection of colorschemes

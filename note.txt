@@ -1,0 +1,1 @@
+changes file permissions or something so the git repo doesnt get overriden
