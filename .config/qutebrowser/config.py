@@ -1,4 +1,4 @@
-config = config
+config = config  # so flake8 will leave me alone
 c = c
 config.load_autoconfig(False)
 
