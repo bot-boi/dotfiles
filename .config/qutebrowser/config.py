@@ -1,15 +1,16 @@
-config = config  # so flake8 will leave me alone
-c = c
+# ignore flake8 "undefined variable" error
+config = config  # noqa: F821
+c = c  # noqa: F821
 config.load_autoconfig(False)
 
-c.auto_save.session = True
 
+c.auto_save.session = True
 c.content.autoplay = False
 c.content.blocking.method = "both"
-
 c.editor.command = ["st", "-e", "vim", "{}"]
 
-c.tabs.background = False  # focus on open
+
+# c.tabs.background = False  # focus on open
 c.tabs.last_close = "close"
 c.tabs.mode_on_change = "persist"
 c.tabs.position = "left"
@@ -21,6 +22,7 @@ c.tabs.width = 300
 
 c.url.default_page = "news.ycombinator.com"
 c.url.start_pages = ["news.ycombinator.com"]
+
 
 c.window.title_format = "{perc} qutebrowser"
 

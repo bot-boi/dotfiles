@@ -5,6 +5,7 @@ android-tools
 atop
 autoconf
 automake
+awesome
 base
 bat
 binutils
@@ -12,6 +13,7 @@ bison
 bluez
 bluez-utils
 brightnessctl
+cronie
 ctags
 dconf-editor
 dhcpcd
@@ -48,6 +50,7 @@ mpv
 nodejs
 npm
 ntfs-3g
+obs-studio
 openssh
 pass
 patch
@@ -60,7 +63,9 @@ python-adblock
 python-beautifulsoup4
 python-pip
 python-tldextract
+qtile
 ranger
+ratpoison
 remmina
 rofi
 rsync

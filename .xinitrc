@@ -36,10 +36,8 @@ fi
 
 
 # start of user config
-lockd &  # unused?
-# st &  # simple terminal
+lockd &  # unused ....
 # timeout screen after 30 mins
 xset dpms 1800 1800 1800
 xsetroot -cursor_name left_ptr &
-xmobar &
-exec xmonad
+exec qtile

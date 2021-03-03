@@ -25,6 +25,8 @@ if IsWindows()
 	source "~/.vimfiles/windows.vim"
 endif
 
+" auto sort python imports
+Plug 'fisadev/vim-isort'
 
 " autocompletions with <TAB> & <CR>
 Plug 'ackyshake/VimCompletesMe'
